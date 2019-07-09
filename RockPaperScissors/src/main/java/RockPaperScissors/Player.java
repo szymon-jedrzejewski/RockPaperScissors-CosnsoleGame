@@ -13,7 +13,7 @@ public class Player {
         name = "player1";
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
@@ -21,7 +21,7 @@ public class Player {
         return name;
     }
 
-    public String enterName() {
+    private String enterName() {
         name = in.next();
         return name;
     }
@@ -38,7 +38,7 @@ public class Player {
         } else {
             choiceNum = 0;
             while (choiceNum == 0) {
-                System.out.println("Incorrect input, please try again!");
+                System.out.println("Incorrect input. Try again, type quit/exit if you want to close app!");
                 choice = in.next().toLowerCase();
                 condition();
             }
@@ -53,14 +53,29 @@ public class Player {
             choiceNum = 2;
         } else if (choice.equals("scissors")) {
             choiceNum = 3;
+        }else if(choice.equals("exit") || choice.equals("quit")){
+            System.exit(0);
         }
     }
 
-    private void back() {
-        Scanner in = new Scanner(System.in);
-        exit = in.next();
-        if (exit.equals("exit")) {
-            System.exit(0);
+//    private void exit() {
+//        Scanner in = new Scanner(System.in);
+//        exit = in.next();
+//        if (exit.equals("exit")) {
+//            System.exit(0);
+//        }
+//    }
+
+    public void displayPlayerName(){
+        String playerName = enterName();
+        setName(playerName);
+    }
+
+    public int howManyGamesDoYouWantToPlay() {
+        int howManyGames = 0;
+        while (howManyGames % 2 == 0) {
+            howManyGames = new Scanner(System.in).nextInt();
         }
+        return howManyGames;
     }
 }
