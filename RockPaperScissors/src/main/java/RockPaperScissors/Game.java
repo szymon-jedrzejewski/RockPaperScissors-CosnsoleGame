@@ -1,11 +1,10 @@
 package RockPaperScissors;
 
-import java.util.Scanner;
 
 public class Game {
 
-    public int playerWins = 0;
-    public int computerWins = 0;
+    private int playerWins = 0;
+    private int computerWins = 0;
 
     private Computer computer = new Computer();
 
@@ -29,12 +28,30 @@ public class Game {
 
 
     public void startGame() {
-
+        System.out.println("============================");
+        System.out.println("Welcome in my RockPaperScissors Game");
+        System.out.println("============================");
         player.displayPlayerName();
-        winnerOfTheRound();
-        displayGameStatus();
+        System.out.println();
+        System.out.println("How many games do you want to play?");
+        int howMany = player.howManyGamesDoYouWantToPlay();
+
+        System.out.println("Select rock, paper or scissors.");
+        mainLoop(howMany);
+
     }
 
+    private void mainLoop(int howMany){
+        boolean condition = true;
+        while (condition) {
+            if (playerWins != (howMany+1)/2 && computerWins != (howMany+1)/2) {
+                winnerOfTheRound();
+                displayGameStatus();
+            }else{
+                condition = false;
+            }
+        }
+    }
 
     private void winnerOfTheRound() {
 
@@ -51,23 +68,28 @@ public class Game {
             case 0:
                 //display()
                 System.out.println("Tie");
+                System.out.println();
                 break;
             case 1:
                 //display()
                 System.out.println("Player has won this round!");
+                System.out.println();
                 playerWins++;
                 break;
             case -1:
                 //display()
                 System.out.println("Computer has won this round!");
+                System.out.println();
                 computerWins++;
                 break;
         }
     }
 
     private void displayGameStatus() {
+        System.out.println("============================");
         System.out.println("Player wins: " + playerWins);
         System.out.println("Computer wins: " + computerWins);
+        System.out.println("============================");
     }
 
     private void displayChoice(String who, int choice) {

@@ -67,15 +67,27 @@ public class Player {
 //    }
 
     public void displayPlayerName(){
+        System.out.println("Enter player name.");
         String playerName = enterName();
         setName(playerName);
+        System.out.println("Welcome " + getName() + " :)");
     }
 
     public int howManyGamesDoYouWantToPlay() {
         int howManyGames = 0;
         while (howManyGames % 2 == 0) {
+            System.out.println("Numbers of game must be odd.");
             howManyGames = new Scanner(System.in).nextInt();
         }
         return howManyGames;
     }
+
+    public boolean playAgain(){
+        System.out.println("Do you want to play again?");
+        System.out.println("Yes/No");
+        String input = in.next().toLowerCase();
+        return input.equals("yes");
+    }
+
+
 }
