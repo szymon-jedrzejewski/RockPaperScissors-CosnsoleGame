@@ -13,7 +13,7 @@ public class Player {
         name = "player1";
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -21,7 +21,7 @@ public class Player {
         return name;
     }
 
-    private String enterName() {
+    public String enterName() {
         name = in.next();
         return name;
     }
@@ -65,13 +65,6 @@ public class Player {
 //            System.exit(0);
 //        }
 //    }
-
-    public void displayPlayerName(){
-        System.out.println("Enter player name.");
-        String playerName = enterName();
-        setName(playerName);
-        System.out.println("Welcome " + getName() + " :)");
-    }
 
     public int howManyGamesDoYouWantToPlay() {
         int howManyGames = 0;

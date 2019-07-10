@@ -7,8 +7,8 @@ public class Game {
     private int computerWins = 0;
 
     private Computer computer = new Computer();
-
     private Player player = new Player();
+    private  Display display = new Display();
 
     private int compareChoices(int computerChoice, int playerChoice) {
 
@@ -31,36 +31,63 @@ public class Game {
         System.out.println("============================");
         System.out.println("Welcome in my RockPaperScissors Game");
         System.out.println("============================");
-        player.displayPlayerName();
+        display.displayPlayerName();
         System.out.println();
-        System.out.println("How many games do you want to play?");
-        int howMany = player.howManyGamesDoYouWantToPlay();
+        System.out.println("How many games do you want to play? Game format is 'Best Of'");
+        //int howMany = player.howManyGamesDoYouWantToPlay();
+        int gamesNeededToWin = (player.howManyGamesDoYouWantToPlay()+1)/2;
 
         System.out.println("Select rock, paper or scissors.");
-        mainLoop(howMany);
+        if(isPlayerAWinner(gamesNeededToWin)){
+            System.out.println("Player has won whole game.");
+        }else {
+            System.out.println("Computer has won whole game.");
+        }
 
     }
 
-    private void mainLoop(int howMany){
-        boolean condition = true;
-        while (condition) {
-            if (playerWins != (howMany+1)/2 && computerWins != (howMany+1)/2) {
-                winnerOfTheRound();
-                displayGameStatus();
-            }else{
-                condition = false;
+//    private void mainLoop(int howMany){
+//        boolean condition = true;
+//        while (condition) {
+//            if (playerWins != (howMany+1)/2 && computerWins != (howMany+1)/2) {
+//                winnerOfTheRound();
+//                displayGameStatus();
+//            }else{
+//                condition = false;
+//            }
+//        }
+//    }
+
+    private boolean isPlayerAWinner(int gamesNeededToWin){
+
+        boolean loopCondition = true;
+        boolean isPlayerAWinner = false;
+
+        while (loopCondition) {
+
+            winnerOfTheRound();
+            display.displayGameStatus(computerWins, playerWins);
+
+            if (playerWins == gamesNeededToWin) {
+
+                isPlayerAWinner = true;
+                loopCondition = false;
+
+            }else if (computerWins == gamesNeededToWin){
+                loopCondition = false;
             }
         }
+        return isPlayerAWinner;
     }
 
     private void winnerOfTheRound() {
 
 
         int playerChoice = player.getChoice();
-        displayChoice(player.getName(), playerChoice);
+        display.displayChoice(player.getName(), playerChoice);
 
         int computerChoice = computer.computerChoice();
-        displayChoice("Computer", computerChoice);
+        display.displayChoice("Computer", computerChoice);
 
         int whoWon = compareChoices(computerChoice, playerChoice);
 
@@ -84,74 +111,4 @@ public class Game {
                 break;
         }
     }
-
-    private void displayGameStatus() {
-        System.out.println("============================");
-        System.out.println("Player wins: " + playerWins);
-        System.out.println("Computer wins: " + computerWins);
-        System.out.println("============================");
-    }
-
-    private void displayChoice(String who, int choice) {
-        {
-            switch (choice) {
-                case 1:
-                    System.out.println(who + " selected rock!");
-                    printRock();
-                    break;
-                case 2:
-                    System.out.println(who + " selected paper!");
-                    printPaper();
-                    break;
-                case 3:
-                    System.out.println(who + " selected scissors!");
-                    printScissors();
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-    }
-
-    private void printRock() {
-        //System.out.println("Rock");
-        System.out.println("============================");
-        System.out.println("    _______ ");
-        System.out.println("---'   ____) ");
-        System.out.println("      (_____)");
-        System.out.println("      (_____)");
-        System.out.println("      (____) ");
-        System.out.println("---.__(___)");
-        System.out.println("============================");
-        System.out.println();
-    }
-
-    private void printPaper() {
-        //System.out.println("Paper");
-        System.out.println("============================");
-        System.out.println("    _______       ");
-        System.out.println("---'   ____)____  ");
-        System.out.println("          ______) ");
-        System.out.println("---'    ________ ) ");
-        System.out.println("        _______) ");
-        System.out.println("---.__________)");
-        System.out.println("============================");
-        System.out.println();
-    }
-
-    private void printScissors() {
-        //System.out.println("Scissors");
-        System.out.println("============================");
-        System.out.println("    _______");
-        System.out.println("---'   ____)____");
-        System.out.println("          ______)");
-        System.out.println("      __________)");
-        System.out.println("      (____)");
-        System.out.println("---.__(___)");
-        System.out.println("============================");
-        System.out.println();
-    }
-
 }
