@@ -4,6 +4,7 @@ public class Display {
 
     Player player = new Player();
 
+    //method responsible for displaying player name
     public void displayPlayerName(){
         System.out.println("Enter player name.");
         String playerName = player.enterName();
@@ -11,7 +12,7 @@ public class Display {
         System.out.println("Welcome " + player.getName() + " :)");
     }
 
-
+    //method to display games status
     public void displayGameStatus(int playerWins, int computerWins) {
         System.out.println("============================");
         System.out.println("-->Player wins: " + playerWins);
@@ -19,6 +20,7 @@ public class Display {
         System.out.println("============================");
     }
 
+    //method displaying player, and computer choices
     public void displayChoice(String who, int choice) {
         {
             switch (choice) {

@@ -10,6 +10,7 @@ public class Game {
     private Player player = new Player();
     private  Display display = new Display();
 
+    //method comparing choices and returning the winner of round
     private int compareChoices(int computerChoice, int playerChoice) {
 
         if (computerChoice == playerChoice) {
@@ -17,6 +18,11 @@ public class Game {
         }
         switch (playerChoice) {
             case 1:
+                //it's same as if-else
+                //before "?" is condition
+                // after are values that will be returned
+                // if condition is true 1 is returned
+                //if condition is false -1 is returned
                 return (computerChoice == 3 ? 1 : -1);
             case 2:
                 return (computerChoice == 1 ? 1 : -1);
@@ -26,7 +32,7 @@ public class Game {
         return 0;
     }
 
-
+    //method contains everything to start the game
     public void startGame() {
         System.out.println("============================");
         System.out.println("Welcome in my RockPaperScissors Game");
@@ -40,8 +46,20 @@ public class Game {
         System.out.println("Select rock, paper or scissors.");
         if(isPlayerAWinner(gamesNeededToWin)){
             System.out.println("Player has won whole game.");
+            System.out.println("============================");
+            if (player.playAgain()){
+                computerWins = 0;
+                playerWins = 0;
+                startGame();
+            }
         }else {
             System.out.println("Computer has won whole game.");
+            System.out.println("============================");
+            if (player.playAgain()){
+                computerWins = 0;
+                playerWins = 0;
+                startGame();
+            }
         }
 
     }
@@ -58,30 +76,36 @@ public class Game {
 //        }
 //    }
 
+    /**
+     * method is used to tell who won whole game
+     * @param gamesNeededToWin - it tells how many games player decided to play
+     * @return doesPlayerWon - returns boolean value who won
+     */
     private boolean isPlayerAWinner(int gamesNeededToWin){
 
         boolean loopCondition = true;
-        boolean isPlayerAWinner = false;
+        boolean doesPlayerWon = false;
 
         while (loopCondition) {
 
             winnerOfTheRound();
-            display.displayGameStatus(computerWins, playerWins);
+            display.displayGameStatus(playerWins, computerWins);
 
             if (playerWins == gamesNeededToWin) {
 
-                isPlayerAWinner = true;
+                doesPlayerWon = true;
                 loopCondition = false;
 
             }else if (computerWins == gamesNeededToWin){
+
                 loopCondition = false;
             }
         }
-        return isPlayerAWinner;
+        return doesPlayerWon;
     }
 
+    //method tells who won round
     private void winnerOfTheRound() {
-
 
         int playerChoice = player.getChoice();
         display.displayChoice(player.getName(), playerChoice);

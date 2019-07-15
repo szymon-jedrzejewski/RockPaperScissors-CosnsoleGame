@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Player {
     private String name;
     private String choice;
+    //variable i used to assign user choice to the number
     private int choiceNum;
     private String exit;
     private Scanner in = new Scanner(System.in);
@@ -26,6 +27,11 @@ public class Player {
         return name;
     }
 
+    /**
+     * method getting player choice
+     * if player enter correct input it assign the input to the number
+     * @return choiceNum
+     */
     public int getChoice() {
 
         choice = in.next().toLowerCase();
@@ -37,6 +43,7 @@ public class Player {
             return choiceNum = 3;
         } else {
             choiceNum = 0;
+            //this loop is used to get correct choice from user
             while (choiceNum == 0) {
                 System.out.println("Incorrect input. Try again, type quit/exit if you want to close app!");
                 choice = in.next().toLowerCase();
@@ -46,6 +53,9 @@ public class Player {
         }
     }
 
+    //repeated code that I moved to another method
+    //it checks if user enter correct input
+    //and gives him opportunity to end program
     private void condition() {
         if (choice.equals("rock")) {
             choiceNum = 1;
@@ -66,6 +76,7 @@ public class Player {
 //        }
 //    }
 
+    //method is getting number of games that player wants to play
     public int howManyGamesDoYouWantToPlay() {
         int howManyGames = 0;
         while (howManyGames % 2 == 0) {
