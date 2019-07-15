@@ -32,12 +32,16 @@ public class Game {
         }
         return 0;
     }
-
-    //method contains everything to start the game
-    public void startGame() {
+    public void startGame(){
         display.welcomeMsg();
         System.out.println("Enter player name.");
         playerName = player.enterName();
+        gameLogic();
+    }
+
+    //method contains everything to start the game
+    private void gameLogic() {
+
         display.displayPlayerName(playerName);
         System.out.println();
         System.out.println("How many games do you want to play? Game format is 'Best Of'");
@@ -50,14 +54,14 @@ public class Game {
             if (player.playAgain()){
                 computerWins = 0;
                 playerWins = 0;
-                startGame();
+                gameLogic();
             }
         }else {
             display.winnerOfTheGameMsg("Computer");
             if (player.playAgain()){
                 computerWins = 0;
                 playerWins = 0;
-                startGame();
+                gameLogic();
             }
         }
 
