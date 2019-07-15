@@ -5,6 +5,7 @@ public class Game {
 
     private int playerWins = 0;
     private int computerWins = 0;
+    private String playerName;
 
     private Computer computer = new Computer();
     private Player player = new Player();
@@ -34,10 +35,10 @@ public class Game {
 
     //method contains everything to start the game
     public void startGame() {
-        System.out.println("============================");
-        System.out.println("Welcome in my RockPaperScissors Game");
-        System.out.println("============================");
-        display.displayPlayerName();
+        display.welcomeMsg();
+        System.out.println("Enter player name.");
+        playerName = player.enterName();
+        display.displayPlayerName(playerName);
         System.out.println();
         System.out.println("How many games do you want to play? Game format is 'Best Of'");
         //int howMany = player.howManyGamesDoYouWantToPlay();
@@ -45,16 +46,14 @@ public class Game {
 
         System.out.println("Select rock, paper or scissors.");
         if(isPlayerAWinner(gamesNeededToWin)){
-            System.out.println("Player has won whole game.");
-            System.out.println("============================");
+            display.winnerOfTheGameMsg(playerName);
             if (player.playAgain()){
                 computerWins = 0;
                 playerWins = 0;
                 startGame();
             }
         }else {
-            System.out.println("Computer has won whole game.");
-            System.out.println("============================");
+            display.winnerOfTheGameMsg("Computer");
             if (player.playAgain()){
                 computerWins = 0;
                 playerWins = 0;
@@ -108,7 +107,7 @@ public class Game {
     private void winnerOfTheRound() {
 
         int playerChoice = player.getChoice();
-        display.displayChoice(player.getName(), playerChoice);
+        display.displayChoice(playerName, playerChoice);
 
         int computerChoice = computer.computerChoice();
         display.displayChoice("Computer", computerChoice);
@@ -123,14 +122,12 @@ public class Game {
                 break;
             case 1:
                 //display()
-                System.out.println("Player has won this round!");
-                System.out.println();
+                display.winnerOfTheRoungMsg(playerName);
                 playerWins++;
                 break;
             case -1:
                 //display()
-                System.out.println("Computer has won this round!");
-                System.out.println();
+                display.winnerOfTheRoungMsg("Computer");
                 computerWins++;
                 break;
         }

@@ -2,14 +2,25 @@ package RockPaperScissors;
 
 public class Display {
 
-    Player player = new Player();
+    public void winnerOfTheRoungMsg(String who){
+        System.out.println(who + " has won this round!");
+        System.out.println();
+    }
+
+    public void winnerOfTheGameMsg(String who){
+        System.out.println(who + " has won whole game.");
+        System.out.println("============================");
+    }
+
+    public void welcomeMsg(){
+        System.out.println("============================");
+        System.out.println("Welcome in my RockPaperScissors Game");
+        System.out.println("============================");
+    }
 
     //method responsible for displaying player name
-    public void displayPlayerName(){
-        System.out.println("Enter player name.");
-        String playerName = player.enterName();
-        player.setName(playerName);
-        System.out.println("Welcome " + player.getName() + " :)");
+    public void displayPlayerName(String playerName){
+        System.out.println("Welcome " + playerName + " :)");
     }
 
     //method to display games status
