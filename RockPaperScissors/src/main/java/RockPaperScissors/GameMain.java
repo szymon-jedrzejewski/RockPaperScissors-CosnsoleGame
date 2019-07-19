@@ -12,8 +12,8 @@ public class GameMain {
         try{
             game.startGame();
         }catch (Exception ex){
-            System.out.println(ex);
+            log.error("Error has occured: ", ex);
+            System.exit(-1);
         }
-
     }
 }
