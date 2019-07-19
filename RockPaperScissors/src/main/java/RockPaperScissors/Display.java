@@ -2,7 +2,7 @@ package RockPaperScissors;
 
 public class Display {
 
-    public void winnerOfTheRoungMsg(String who){
+    public void winnerOfTheRound(String who){
         System.out.println(who + " has won this round!");
         System.out.println();
     }

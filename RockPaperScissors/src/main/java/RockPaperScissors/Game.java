@@ -126,12 +126,12 @@ public class Game {
                 break;
             case 1:
                 //display()
-                display.winnerOfTheRoungMsg(playerName);
+                display.winnerOfTheRound(playerName);
                 playerWins++;
                 break;
             case -1:
                 //display()
-                display.winnerOfTheRoungMsg("Computer");
+                display.winnerOfTheRound("Computer");
                 computerWins++;
                 break;
         }
