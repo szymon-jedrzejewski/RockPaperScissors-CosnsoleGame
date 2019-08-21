@@ -12,7 +12,7 @@ public class Game {
     private  Display display = new Display();
 
     //method comparing choices and returning the winner of round
-    private int compareChoices(int computerChoice, int playerChoice) {
+    public int compareChoices(int computerChoice, int playerChoice) {
 
         if (computerChoice == playerChoice) {
             return 0;

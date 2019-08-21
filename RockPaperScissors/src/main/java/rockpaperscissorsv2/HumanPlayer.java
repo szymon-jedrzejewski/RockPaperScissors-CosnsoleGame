@@ -9,15 +9,6 @@ public class HumanPlayer extends Player {
         name = "player1";
     }
 
-    public String playerName(){
-        name = humInDe.enterPlayerName();
-        return name;
-    }
-
-    public String getName(){
-        return name;
-    }
-
     @Override
     public RPS playerChoice() {
         String playerChoice;
@@ -49,19 +40,4 @@ public class HumanPlayer extends Player {
         }
     }
 
-    public int numberOfGame() {
-        boolean isNotCorrect = true;
-        int numberOfGame = -1;
-        humInDe.numbersMustBeOddMsg();
-        while (isNotCorrect) {
-            numberOfGame = humInDe.getNumbersOfGame();
-            if (numberOfGame % 2 == 0) {
-                humInDe.incorrectInputMsg("number of games!");
-                isNotCorrect = true;
-            }else{
-                isNotCorrect = false;
-            }
-        }
-        return numberOfGame;
-    }
 }

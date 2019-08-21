@@ -21,8 +21,8 @@ public class HumanInterfaceDevice {
         System.out.println("Number of games must be odd.");
     }
 
-    public void getInputMsg() {
-        System.out.println("Enter rock, paper or scissors.");
+    public void enterYourChoiceMsg() {
+        System.out.println("Please enter your choice.");
     }
 
     /**
@@ -36,8 +36,16 @@ public class HumanInterfaceDevice {
         System.out.println("Welcome in my rock, paper, scissors game!!");
     }
 
-    public void winnerOfTheRound(RPS playerOneChoice, RPS playerTwoChoice){
+    public void enterPlayerNameMsg(){
+        System.out.println("Please enter your name.");
+    }
 
+    public void hiMsg(String who){
+        System.out.println("Hi " + who);
+    }
+
+    public void enterNumberOfGames(){
+        System.out.println("Please enter number of games you want to play.");
     }
 
     /**
@@ -54,8 +62,8 @@ public class HumanInterfaceDevice {
 
     public void gameStatus(String playerOneName, int playerOneWins, String playerTwoName, int playerTwoWins) {
         System.out.println("\n============================");
-        System.out.println(playerOneName + "wins: " + playerOneWins);
-        System.out.println(playerTwoName + "wins: " + playerTwoWins);
+        System.out.println(playerOneName + " wins: " + playerOneWins);
+        System.out.println(playerTwoName + " wins: " + playerTwoWins);
         System.out.println("============================\n");
     }
 
@@ -63,15 +71,15 @@ public class HumanInterfaceDevice {
 
         switch (choice){
             case ROCK:
-                System.out.println("-->" + who + "selected rock!\n");
+                System.out.println("-->" + who + " selected rock!");
                 displayRock();
                 break;
             case PAPER:
-                System.out.println("-->" + who + "selected paper!\n");
+                System.out.println("-->" + who + " selected paper!");
                 displayPaper();
                 break;
             case SCISSORS:
-                System.out.println("-->" + who + "selected scissors!\n");
+                System.out.println("-->" + who + " selected scissors!");
                 displayScissors();
                 break;
         }
