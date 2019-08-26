@@ -17,30 +17,30 @@ public class HumanInterfaceDevice {
         return in.next();
     }
 
-    public void numbersMustBeOddMsg() {
+    public void displayNumbersMustBeOddMassage() {
         System.out.println("Number of games must be odd.");
     }
 
-    public void enterYourChoiceMsg() {
+    public void enterYourChoiceMassage() {
         System.out.println("Please enter your choice.");
     }
 
     /**
      * @param msg Incorrect + msg + Try again.
      */
-    public void incorrectInputMsg(String msg) {
+    public void displayIncorrectInputMassage(String msg) {
         System.out.println("Incorrect" + msg + " Try again.");
     }
 
-    public void welcomeMsg() {
+    public void displayWelcomeMassage() {
         System.out.println("Welcome in my rock, paper, scissors game!!");
     }
 
-    public void enterPlayerNameMsg(){
+    public void enterPlayerNameMassage(){
         System.out.println("Please enter your name.");
     }
 
-    public void hiMsg(String who){
+    public void displayHiMassage(String who){
         System.out.println("Hi " + who);
     }
 
@@ -52,11 +52,19 @@ public class HumanInterfaceDevice {
      *
      * @param who The winner of the + game/round + is + who
      */
-    public void winnerOfTheGameOrRound(String what, String who) {
+    public void displayWinnerOfTheGameOrRound(String what, String who) {
         System.out.println("The winner of the " + what + " is " + who);
     }
 
-    public void tieMsg(){
+    public void displayGameWinner(String who) {
+        displayWinnerOfTheGameOrRound("game", who);
+    }
+
+    public void displayRoundWinner(String who) {
+        displayWinnerOfTheGameOrRound("round", who);
+    }
+
+    public void displayTieMassage(){
         System.out.println("It's tie this time.");
     }
 
@@ -67,7 +75,7 @@ public class HumanInterfaceDevice {
         System.out.println("============================\n");
     }
 
-    public void displayChoices(String who, RPS choice){
+    public void displayChoices(String who, Choice choice){
 
         switch (choice){
             case ROCK:

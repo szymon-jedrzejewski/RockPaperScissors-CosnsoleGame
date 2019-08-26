@@ -2,8 +2,8 @@ package rockpaperscissorsv2;
 
 public class Computer extends  Player{
     @Override
-    public RPS playerChoice() {
-        RPS[] rps = {RPS.ROCK, RPS.PAPER, RPS.SCISSORS};
+    public Choice playerChoice() {
+        Choice[] rps = {Choice.ROCK, Choice.PAPER, Choice.SCISSORS};
         return rps[(int) (Math.random() * rps.length)];
     }
 }

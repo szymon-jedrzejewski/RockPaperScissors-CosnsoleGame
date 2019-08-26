@@ -1,25 +1,26 @@
 package rockpaperscissorsv2;
 
 public class HumanPlayer extends Player {
-    private HumanInterfaceDevice humInDe = new HumanInterfaceDevice();
-    private RPS assignedValue;
+    private HumanInterfaceDevice humanInterfaceDevice;
+    private Choice assignedValue;
     private String name;
 
-    public HumanPlayer(){
+    public HumanPlayer(HumanInterfaceDevice humanInterfaceDevice){
         name = "player1";
+        this.humanInterfaceDevice = humanInterfaceDevice;
     }
 
     @Override
-    public RPS playerChoice() {
+    public Choice playerChoice() {
         String playerChoice;
         boolean isNotCorrect = true;
         while (isNotCorrect) {
-            playerChoice = humInDe.getPlayerChoice();
+            playerChoice = humanInterfaceDevice.getPlayerChoice();
             if (playerChoice.equals("rock") || playerChoice.equals("paper") || playerChoice.equals("scissors")) {
                 assignPlayerChoice(playerChoice);
                 isNotCorrect = false;
             } else {
-                humInDe.incorrectInputMsg("input!");
+                humanInterfaceDevice.displayIncorrectInputMassage("input!");
                 isNotCorrect = true;
             }
         }
@@ -29,13 +30,13 @@ public class HumanPlayer extends Player {
     private void assignPlayerChoice(String playerChoice) {
         switch (playerChoice) {
             case "rock":
-                assignedValue = RPS.ROCK;
+                assignedValue = Choice.ROCK;
                 break;
             case "paper":
-                assignedValue = RPS.PAPER;
+                assignedValue = Choice.PAPER;
                 break;
             case "scissors":
-                assignedValue = RPS.SCISSORS;
+                assignedValue = Choice.SCISSORS;
                 break;
         }
     }

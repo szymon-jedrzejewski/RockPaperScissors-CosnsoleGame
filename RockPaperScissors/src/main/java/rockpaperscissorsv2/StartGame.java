@@ -5,28 +5,30 @@ public class StartGame {
     Judge judge = new Judge();
 
     public void startGame(){
-        int playerOneWins = judge.getPlayerOneWins();
-        int playerTwoWins = judge.getPlayerTwoWins();
 
-        humInDe.welcomeMsg();
+        humInDe.displayWelcomeMassage();
 
-        humInDe.enterPlayerNameMsg();
+        humInDe.enterPlayerNameMassage();
 
         String playerName = humInDe.enterPlayerName();
 
-        humInDe.hiMsg(playerName);
+        humInDe.displayHiMassage(playerName);
 
         humInDe.enterNumberOfGames();
 
-        int numberOfGames = judge.numberOfGame();
+        int numberOfGames = judge.numberOfGames();
 
         while(numberOfGames != 0) {
 
-            humInDe.enterYourChoiceMsg();
+
+            humInDe.enterYourChoiceMassage();
 
             judge.winLoseTie(playerName, "Computer");
 
-            humInDe.gameStatus(playerName,playerOneWins, "Computer", playerTwoWins);
+            int playerOneWins = judge.getPlayerOneWins();
+            int playerTwoWins = judge.getPlayerTwoWins();
+
+            humInDe.gameStatus(playerName, playerOneWins, "Computer", playerTwoWins);
 
             numberOfGames--;
         }

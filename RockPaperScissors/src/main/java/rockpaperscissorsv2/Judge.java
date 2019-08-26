@@ -1,15 +1,18 @@
 package rockpaperscissorsv2;
 
-import static rockpaperscissorsv2.RPS.*;
+import static rockpaperscissorsv2.Choice.*;
+import static rockpaperscissorsv2.RoundResult.PLAYER_ONE_WON;
+import static rockpaperscissorsv2.RoundResult.PLAYER_TWO_WON;
+import static rockpaperscissorsv2.RoundResult.TIE;
 
 public class Judge {
     private HumanInterfaceDevice humInDe = new HumanInterfaceDevice();
-    private Player playerOne = new HumanPlayer();
+    private Player playerOne = new HumanPlayer(humInDe);
     private Player computer = new Computer();
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
 
-    private RPS compareChoices(RPS playerOneChoice, RPS playerTwoChoice) {
+    public RoundResult compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
 
         if (playerOneChoice == playerTwoChoice) {
             return TIE;
@@ -31,25 +34,25 @@ public class Judge {
 
     public void winLoseTie(String playerOneName, String playerTwoName){
 
-        RPS playerOneChoice = playerOne.playerChoice();
+        Choice playerOneChoice = playerOne.playerChoice();
         humInDe.displayChoices(playerOneName, playerOneChoice);
 
-        RPS playerTwoChoice = computer.playerChoice();
+        Choice playerTwoChoice = computer.playerChoice();
         humInDe.displayChoices(playerTwoName, playerTwoChoice);
 
-        RPS winLoseTie = compareChoices(playerOneChoice, playerTwoChoice);
+        RoundResult winLoseTie = compareChoices(playerOneChoice, playerTwoChoice);
 
         switch (winLoseTie){
             case TIE:
-                humInDe.tieMsg();
+                humInDe.displayTieMassage();
                 break;
             case PLAYER_ONE_WON:
-                humInDe.winnerOfTheGameOrRound("round", playerOneName);
-                playerOneWins = playerOneWins +1;
+                humInDe.displayRoundWinner(playerOneName);
+                playerOneWins++;
                 break;
             case PLAYER_TWO_WON:
-                humInDe.winnerOfTheGameOrRound("round", playerTwoName);
-                playerTwoWins = playerTwoWins +1;
+                humInDe.displayRoundWinner(playerTwoName);
+                playerTwoWins++;
                 break;
         }
     }
@@ -62,19 +65,19 @@ public class Judge {
         return playerTwoWins;
     }
 
-    public int numberOfGame() {
+    public int numberOfGames() {
         boolean isNotCorrect = true;
-        int numberOfGame = -1;
-        humInDe.numbersMustBeOddMsg();
+        int numberOfGames = -1;
+        humInDe.displayNumbersMustBeOddMassage();
         while (isNotCorrect) {
-            numberOfGame = humInDe.getNumbersOfGame();
-            if (numberOfGame % 2 == 0) {
-                humInDe.incorrectInputMsg("number of games!");
+            numberOfGames = humInDe.getNumbersOfGame();
+            if (numberOfGames % 2 == 0) {
+                humInDe.displayIncorrectInputMassage("number of games!");
                 isNotCorrect = true;
             }else{
                 isNotCorrect = false;
             }
         }
-        return numberOfGame;
+        return numberOfGames;
     }
 }
