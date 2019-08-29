@@ -14,7 +14,7 @@ public class JudgeTest
      * Rigorous Test :-)
      */
     private Judge judge;
-    private Player humanPlayer;
+    //private Player humanPlayer;
     //@Mock
    // Scanner mockedScanner;
 

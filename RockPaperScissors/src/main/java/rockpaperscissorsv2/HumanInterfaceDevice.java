@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 public class HumanInterfaceDevice {
     private Scanner in = new Scanner(System.in);
+    private Choice assignedValue;
+    public String playerOneName;
+    public String playerTwoName = "Computer";
 
-    public String getPlayerChoice() {
+    private String enterPlayerChoice() {
         return in.next().toLowerCase();
     }
 
@@ -14,38 +17,39 @@ public class HumanInterfaceDevice {
     }
 
     public String enterPlayerName() {
-        return in.next();
+        playerOneName = in.next();
+        return playerOneName;
+    }
+
+    public void displayNumberOfGamesMassage(){
+        System.out.println("Please enter number of games you want to play.");
+    }
+
+    public void displayYourChoiceMassage() {
+        System.out.println("Please enter your choice.");
     }
 
     public void displayNumbersMustBeOddMassage() {
         System.out.println("Number of games must be odd.");
     }
 
-    public void enterYourChoiceMassage() {
-        System.out.println("Please enter your choice.");
-    }
-
     /**
-     * @param msg Incorrect + msg + Try again.
+     * @param massage Incorrect + massage + Try again.
      */
-    public void displayIncorrectInputMassage(String msg) {
-        System.out.println("Incorrect" + msg + " Try again.");
+    public void displayIncorrectInputMassage(String massage) {
+        System.out.println("Incorrect" + massage + " Try again.");
     }
 
     public void displayWelcomeMassage() {
         System.out.println("Welcome in my rock, paper, scissors game!!");
     }
 
-    public void enterPlayerNameMassage(){
+    public void displayEnterPlayerNameMassage(){
         System.out.println("Please enter your name.");
     }
 
     public void displayHiMassage(String who){
         System.out.println("Hi " + who);
-    }
-
-    public void enterNumberOfGames(){
-        System.out.println("Please enter number of games you want to play.");
     }
 
     /**
@@ -68,11 +72,41 @@ public class HumanInterfaceDevice {
         System.out.println("It's tie this time.");
     }
 
-    public void gameStatus(String playerOneName, int playerOneWins, String playerTwoName, int playerTwoWins) {
+    public void displayGameStatus(int playerOneWins, int playerTwoWins) {
         System.out.println("\n============================");
         System.out.println(playerOneName + " wins: " + playerOneWins);
         System.out.println(playerTwoName + " wins: " + playerTwoWins);
         System.out.println("============================\n");
+    }
+
+    public Choice getPlayerCorrectChoice() {
+        String playerChoice;
+        boolean isNotCorrect = true;
+        while (isNotCorrect) {
+            playerChoice = enterPlayerChoice();
+            if (playerChoice.equals("rock") || playerChoice.equals("paper") || playerChoice.equals("scissors")) {
+                assignPlayerChoice(playerChoice);
+                isNotCorrect = false;
+            } else {
+                displayIncorrectInputMassage("input!");
+                isNotCorrect = true;
+            }
+        }
+        return assignedValue;
+    }
+
+    private void assignPlayerChoice(String playerChoice) {
+        switch (playerChoice) {
+            case "rock":
+                assignedValue = Choice.ROCK;
+                break;
+            case "paper":
+                assignedValue = Choice.PAPER;
+                break;
+            case "scissors":
+                assignedValue = Choice.SCISSORS;
+                break;
+        }
     }
 
     public void displayChoices(String who, Choice choice){

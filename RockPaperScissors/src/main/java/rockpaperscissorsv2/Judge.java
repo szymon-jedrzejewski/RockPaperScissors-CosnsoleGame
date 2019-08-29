@@ -6,13 +6,13 @@ import static rockpaperscissorsv2.RoundResult.PLAYER_TWO_WON;
 import static rockpaperscissorsv2.RoundResult.TIE;
 
 public class Judge {
-    private HumanInterfaceDevice humInDe = new HumanInterfaceDevice();
-    private Player playerOne = new HumanPlayer(humInDe);
-    private Player computer = new Computer();
+    private HumanInterfaceDevice humanInterfaceDevice = new HumanInterfaceDevice();
+    //private Player playerOne = new HumanPlayer(humInDe);
+    private Computer computer = new Computer();
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
 
-    public RoundResult compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
+    private RoundResult compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
 
         if (playerOneChoice == playerTwoChoice) {
             return TIE;
@@ -32,52 +32,87 @@ public class Judge {
         return TIE;
     }
 
-    public void winLoseTie(String playerOneName, String playerTwoName){
+    public void winnerOfTheRound() {
 
-        Choice playerOneChoice = playerOne.playerChoice();
-        humInDe.displayChoices(playerOneName, playerOneChoice);
+        Choice playerOneChoice = humanInterfaceDevice.getPlayerCorrectChoice();
+        humanInterfaceDevice.displayChoices(humanInterfaceDevice.playerOneName, playerOneChoice);
 
         Choice playerTwoChoice = computer.playerChoice();
-        humInDe.displayChoices(playerTwoName, playerTwoChoice);
+        humanInterfaceDevice.displayChoices(humanInterfaceDevice.playerTwoName, playerTwoChoice);
 
         RoundResult winLoseTie = compareChoices(playerOneChoice, playerTwoChoice);
 
-        switch (winLoseTie){
+        switch (winLoseTie) {
             case TIE:
-                humInDe.displayTieMassage();
+                humanInterfaceDevice.displayTieMassage();
                 break;
             case PLAYER_ONE_WON:
-                humInDe.displayRoundWinner(playerOneName);
+                humanInterfaceDevice.displayRoundWinner(humanInterfaceDevice.playerOneName);
                 playerOneWins++;
                 break;
             case PLAYER_TWO_WON:
-                humInDe.displayRoundWinner(playerTwoName);
+                humanInterfaceDevice.displayRoundWinner(humanInterfaceDevice.playerTwoName);
                 playerTwoWins++;
                 break;
         }
     }
 
-    public int getPlayerOneWins(){
-        return playerOneWins;
-    }
-
-    public int getPlayerTwoWins(){
-        return playerTwoWins;
-    }
-
-    public int numberOfGames() {
+    private int numberOfGames() {
         boolean isNotCorrect = true;
         int numberOfGames = -1;
-        humInDe.displayNumbersMustBeOddMassage();
+        humanInterfaceDevice.displayNumbersMustBeOddMassage();
         while (isNotCorrect) {
-            numberOfGames = humInDe.getNumbersOfGame();
+            numberOfGames = humanInterfaceDevice.getNumbersOfGame();
             if (numberOfGames % 2 == 0) {
-                humInDe.displayIncorrectInputMassage("number of games!");
+                humanInterfaceDevice.displayIncorrectInputMassage("number of games!");
                 isNotCorrect = true;
-            }else{
+            } else {
                 isNotCorrect = false;
             }
         }
         return numberOfGames;
+    }
+
+    private boolean isPlayerOneAWinnerOfTheGame(int gamesNeededToWin) {
+        boolean didPlayerOneWin = true;
+        boolean playerOneOrPlayerTwoIsNotWinnerOfGame = true;
+
+        while (playerOneOrPlayerTwoIsNotWinnerOfGame) {
+            humanInterfaceDevice.displayYourChoiceMassage();
+            winnerOfTheRound();
+            humanInterfaceDevice.displayGameStatus(playerOneWins, playerTwoWins);
+
+            if (playerOneWins == gamesNeededToWin) {
+
+                playerOneOrPlayerTwoIsNotWinnerOfGame = false;
+
+            } else if (playerTwoWins == gamesNeededToWin) {
+
+                didPlayerOneWin = false;
+                playerOneOrPlayerTwoIsNotWinnerOfGame = false;
+
+            }
+        }
+        return didPlayerOneWin;
+    }
+
+    private void gameLogic() {
+        humanInterfaceDevice.displayNumberOfGamesMassage();
+
+        int numberOfGames = (numberOfGames() + 1)/2;
+
+        if (isPlayerOneAWinnerOfTheGame(numberOfGames)) {
+            humanInterfaceDevice.displayGameWinner(humanInterfaceDevice.playerOneName);
+        } else {
+            humanInterfaceDevice.displayGameWinner(humanInterfaceDevice.playerTwoName);
+        }
+    }
+
+    public void startGame(){
+        humanInterfaceDevice.displayWelcomeMassage();
+        humanInterfaceDevice.displayEnterPlayerNameMassage();
+        humanInterfaceDevice.enterPlayerName();
+        humanInterfaceDevice.displayHiMassage(humanInterfaceDevice.playerOneName);
+        gameLogic();
     }
 }
