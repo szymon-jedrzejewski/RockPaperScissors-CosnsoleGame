@@ -18,34 +18,34 @@ public class HumanInterfaceDevice {
         return in.next();
     }
 
-    public void displayNumberOfGamesMassage(){
+    public void displayNumberOfGamesMessage(){
         System.out.println("Please enter number of games you want to play.");
     }
 
-    public void displayYourChoiceMassage() {
+    public void displayYourChoiceMessage() {
         System.out.println("Please enter your choice.");
     }
 
-    public void displayNumbersMustBeOddMassage() {
+    public void displayNumbersMustBeOddMessage() {
         System.out.println("Number of games must be odd.");
     }
 
     /**
-     * @param massage Incorrect + massage + Try again.
+     * @param message Incorrect + message + Try again.
      */
-    public void displayIncorrectInputMassage(String massage) {
-        System.out.println("Incorrect" + massage + " Try again.");
+    public void displayIncorrectInputMessage(String message) {
+        System.out.println("Incorrect" + message + " Try again.");
     }
 
-    public void displayWelcomeMassage() {
+    public void displayWelcomeMessage() {
         System.out.println("Welcome in my rock, paper, scissors game!!");
     }
 
-    public void displayEnterPlayerNameMassage(){
+    public void displayEnterPlayerNameMessage(){
         System.out.println("Please enter your name.");
     }
 
-    public void displayHiMassage(String who){
+    public void displayHiMessage(String who){
         System.out.println("Hi " + who);
     }
 
@@ -65,7 +65,7 @@ public class HumanInterfaceDevice {
         displayWinnerOfTheGameOrRound("round", who);
     }
 
-    public void displayTieMassage(){
+    public void displayTieMessage(){
         System.out.println("It's tie this time.");
     }
 
@@ -85,7 +85,7 @@ public class HumanInterfaceDevice {
                 assignPlayerChoice(playerChoice);
                 isNotCorrect = false;
             } else {
-                displayIncorrectInputMassage("input!");
+                displayIncorrectInputMessage("input!");
                 isNotCorrect = true;
             }
         }

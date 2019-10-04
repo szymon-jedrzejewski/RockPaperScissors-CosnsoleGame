@@ -1,6 +1,7 @@
 package rockpaperscissorsv2;
 
 import static rockpaperscissorsv2.Choice.*;
+import static rockpaperscissorsv2.HumanInterfaceDevice.*;
 import static rockpaperscissorsv2.Result.*;
 
 public class Judge {
@@ -11,6 +12,7 @@ public class Judge {
     private int playerTwoWins = 0;
     private String playerOneName;
     private String playerTwoName = "Computer";
+
 
     private Result compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
 
@@ -44,7 +46,7 @@ public class Judge {
 
         switch (winLoseTie) {
             case TIE:
-                humanInterfaceDevice.displayTieMassage();
+                humanInterfaceDevice.displayTieMessage();
                 break;
             case PLAYER_ONE_WON:
                 humanInterfaceDevice.displayRoundWinner(playerOneName);
@@ -60,11 +62,11 @@ public class Judge {
     private int numberOfGames() {
         boolean isNotCorrect = true;
         int numberOfGames = -1;
-        humanInterfaceDevice.displayNumbersMustBeOddMassage();
+        humanInterfaceDevice.displayNumbersMustBeOddMessage();
         while (isNotCorrect) {
             numberOfGames = humanInterfaceDevice.getNumbersOfGame();
             if (numberOfGames % 2 == 0) {
-                humanInterfaceDevice.displayIncorrectInputMassage("number of games!");
+                humanInterfaceDevice.displayIncorrectInputMessage("number of games!");
                 isNotCorrect = true;
             } else {
                 isNotCorrect = false;
@@ -75,7 +77,7 @@ public class Judge {
 
     private Result getWinnerOfTheGame(int gamesNeededToWin) {
         while (playerOneWins < gamesNeededToWin && playerTwoWins < gamesNeededToWin) {
-            humanInterfaceDevice.displayYourChoiceMassage();
+            humanInterfaceDevice.displayYourChoiceMessage();
             winnerOfTheRound();
             humanInterfaceDevice.displayGameStatus(playerOneName, playerOneWins, playerTwoName, playerTwoWins);
         }
@@ -83,7 +85,7 @@ public class Judge {
     }
 
     private void gameLogic() {
-        humanInterfaceDevice.displayNumberOfGamesMassage();
+        humanInterfaceDevice.displayNumberOfGamesMessage();
 
         int numberOfGames = (numberOfGames() + 1) / 2;
 
@@ -98,10 +100,10 @@ public class Judge {
     }
 
     public void startGame() {
-        humanInterfaceDevice.displayWelcomeMassage();
-        humanInterfaceDevice.displayEnterPlayerNameMassage();
+        humanInterfaceDevice.displayWelcomeMessage();
+        humanInterfaceDevice.displayEnterPlayerNameMessage();
         playerOneName = humanInterfaceDevice.enterPlayerName();
-        humanInterfaceDevice.displayHiMassage(playerOneName);
+        humanInterfaceDevice.displayHiMessage(playerOneName);
         gameLogic();
     }
 }
