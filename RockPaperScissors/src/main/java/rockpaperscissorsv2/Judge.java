@@ -12,6 +12,7 @@ public class Judge {
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
     private String playerOneName;
+    public String playerTwoName = "Computer";
 
     private RoundResult compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
 
@@ -39,7 +40,7 @@ public class Judge {
         humanInterfaceDevice.displayChoices(playerOneName, playerOneChoice);
 
         Choice playerTwoChoice = computer.playerChoice();
-        humanInterfaceDevice.displayChoices(humanInterfaceDevice.playerTwoName, playerTwoChoice);
+        humanInterfaceDevice.displayChoices(playerTwoName, playerTwoChoice);
 
         RoundResult winLoseTie = compareChoices(playerOneChoice, playerTwoChoice);
 
@@ -52,7 +53,7 @@ public class Judge {
                 playerOneWins++;
                 break;
             case PLAYER_TWO_WON:
-                humanInterfaceDevice.displayRoundWinner(humanInterfaceDevice.playerTwoName);
+                humanInterfaceDevice.displayRoundWinner(playerTwoName);
                 playerTwoWins++;
                 break;
         }
@@ -81,7 +82,7 @@ public class Judge {
         while (playerOneOrPlayerTwoIsNotWinnerOfGame) {
             humanInterfaceDevice.displayYourChoiceMassage();
             winnerOfTheRound();
-            humanInterfaceDevice.displayGameStatus(playerOneName, playerOneWins, playerTwoWins);
+            humanInterfaceDevice.displayGameStatus(playerOneName, playerOneWins, playerTwoName, playerTwoWins);
 
             if (playerOneWins == gamesNeededToWin) {
 
@@ -100,16 +101,16 @@ public class Judge {
     private void gameLogic() {
         humanInterfaceDevice.displayNumberOfGamesMassage();
 
-        int numberOfGames = (numberOfGames() + 1)/2;
+        int numberOfGames = (numberOfGames() + 1) / 2;
 
         if (isPlayerOneAWinnerOfTheGame(numberOfGames)) {
             humanInterfaceDevice.displayGameWinner(playerOneName);
         } else {
-            humanInterfaceDevice.displayGameWinner(humanInterfaceDevice.playerTwoName);
+            humanInterfaceDevice.displayGameWinner(playerTwoName);
         }
     }
 
-    public void startGame(){
+    public void startGame() {
         humanInterfaceDevice.displayWelcomeMassage();
         humanInterfaceDevice.displayEnterPlayerNameMassage();
         playerOneName = humanInterfaceDevice.enterPlayerName();
