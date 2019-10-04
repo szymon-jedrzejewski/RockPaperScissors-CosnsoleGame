@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class HumanInterfaceDevice {
     private Scanner in = new Scanner(System.in);
     private Choice assignedValue;
-    public String playerOneName;
     public String playerTwoName = "Computer";
 
     private String enterPlayerChoice() {
@@ -17,8 +16,7 @@ public class HumanInterfaceDevice {
     }
 
     public String enterPlayerName() {
-        playerOneName = in.next();
-        return playerOneName;
+        return in.next();
     }
 
     public void displayNumberOfGamesMassage(){
@@ -72,7 +70,7 @@ public class HumanInterfaceDevice {
         System.out.println("It's tie this time.");
     }
 
-    public void displayGameStatus(int playerOneWins, int playerTwoWins) {
+    public void displayGameStatus(String playerOneName, int playerOneWins, int playerTwoWins) {
         System.out.println("\n============================");
         System.out.println(playerOneName + " wins: " + playerOneWins);
         System.out.println(playerTwoName + " wins: " + playerTwoWins);

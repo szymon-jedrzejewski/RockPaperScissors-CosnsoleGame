@@ -11,6 +11,7 @@ public class Judge {
     private Computer computer = new Computer();
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
+    private String playerOneName;
 
     private RoundResult compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
 
@@ -35,7 +36,7 @@ public class Judge {
     public void winnerOfTheRound() {
 
         Choice playerOneChoice = humanInterfaceDevice.getPlayerCorrectChoice();
-        humanInterfaceDevice.displayChoices(humanInterfaceDevice.playerOneName, playerOneChoice);
+        humanInterfaceDevice.displayChoices(playerOneName, playerOneChoice);
 
         Choice playerTwoChoice = computer.playerChoice();
         humanInterfaceDevice.displayChoices(humanInterfaceDevice.playerTwoName, playerTwoChoice);
@@ -47,7 +48,7 @@ public class Judge {
                 humanInterfaceDevice.displayTieMassage();
                 break;
             case PLAYER_ONE_WON:
-                humanInterfaceDevice.displayRoundWinner(humanInterfaceDevice.playerOneName);
+                humanInterfaceDevice.displayRoundWinner(playerOneName);
                 playerOneWins++;
                 break;
             case PLAYER_TWO_WON:
@@ -80,7 +81,7 @@ public class Judge {
         while (playerOneOrPlayerTwoIsNotWinnerOfGame) {
             humanInterfaceDevice.displayYourChoiceMassage();
             winnerOfTheRound();
-            humanInterfaceDevice.displayGameStatus(playerOneWins, playerTwoWins);
+            humanInterfaceDevice.displayGameStatus(playerOneName, playerOneWins, playerTwoWins);
 
             if (playerOneWins == gamesNeededToWin) {
 
@@ -102,7 +103,7 @@ public class Judge {
         int numberOfGames = (numberOfGames() + 1)/2;
 
         if (isPlayerOneAWinnerOfTheGame(numberOfGames)) {
-            humanInterfaceDevice.displayGameWinner(humanInterfaceDevice.playerOneName);
+            humanInterfaceDevice.displayGameWinner(playerOneName);
         } else {
             humanInterfaceDevice.displayGameWinner(humanInterfaceDevice.playerTwoName);
         }
@@ -111,8 +112,8 @@ public class Judge {
     public void startGame(){
         humanInterfaceDevice.displayWelcomeMassage();
         humanInterfaceDevice.displayEnterPlayerNameMassage();
-        humanInterfaceDevice.enterPlayerName();
-        humanInterfaceDevice.displayHiMassage(humanInterfaceDevice.playerOneName);
+        playerOneName = humanInterfaceDevice.enterPlayerName();
+        humanInterfaceDevice.displayHiMassage(playerOneName);
         gameLogic();
     }
 }

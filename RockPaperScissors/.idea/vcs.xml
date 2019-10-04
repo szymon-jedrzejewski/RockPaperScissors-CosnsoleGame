@@ -2,7 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../../javapozn16/programowanie2/javapoz16-zoo" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../../javapozn16/wstep-prog1-tdd/java16poz" vcs="Git" />
   </component>
 </project>
