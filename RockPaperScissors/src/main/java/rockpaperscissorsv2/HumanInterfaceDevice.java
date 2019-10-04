@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class HumanInterfaceDevice {
     private Scanner in = new Scanner(System.in);
     private Choice assignedValue;
+    private String playerOneName;
+    private String playerTwoName = "Computer";
 
     private String enterPlayerChoice() {
         return in.next().toLowerCase();
@@ -15,10 +17,10 @@ public class HumanInterfaceDevice {
     }
 
     public String enterPlayerName() {
-        return in.next();
+        return playerOneName = in.next();
     }
 
-    public void displayNumberOfGamesMessage(){
+    public void displayNumberOfGamesMessage() {
         System.out.println("Please enter number of games you want to play.");
     }
 
@@ -41,35 +43,45 @@ public class HumanInterfaceDevice {
         System.out.println("Welcome in my rock, paper, scissors game!!");
     }
 
-    public void displayEnterPlayerNameMessage(){
+    public void displayEnterPlayerNameMessage() {
         System.out.println("Please enter your name.");
     }
 
-    public void displayHiMessage(String who){
+    private void displayHiMessage(String who) {
         System.out.println("Hi " + who);
+    }
+    public void displayPlayerOneHiMessage(){
+        displayHiMessage(playerOneName);
     }
 
     /**
-     *
      * @param who The winner of the + game/round + is + who
      */
-    public void displayWinnerOfTheGameOrRound(String what, String who) {
+    private void displayWinnerOfTheGameOrRound(String what, String who) {
         System.out.println("The winner of the " + what + " is " + who);
     }
 
-    public void displayGameWinner(String who) {
-        displayWinnerOfTheGameOrRound("game", who);
+    public void displayPlayerOneWinGameMessage() {
+        displayWinnerOfTheGameOrRound("game", playerOneName);
     }
 
-    public void displayRoundWinner(String who) {
-        displayWinnerOfTheGameOrRound("round", who);
+    public void displayPlayerTwoWinGameMessage() {
+        displayWinnerOfTheGameOrRound("game", playerTwoName);
     }
 
-    public void displayTieMessage(){
+    public void displayPlayerOneWinRoundMessage() {
+        displayWinnerOfTheGameOrRound("round", playerOneName);
+    }
+
+    public void displayPlayerTwoWinRoundMessage() {
+        displayWinnerOfTheGameOrRound("round", playerTwoName);
+    }
+
+    public void displayTieMessage() {
         System.out.println("It's tie this time.");
     }
 
-    public void displayGameStatus(String playerOneName, int playerOneWins,String playerTwoName, int playerTwoWins) {
+    public void displayGameStatus(int playerOneWins, int playerTwoWins) {
         System.out.println("\n============================");
         System.out.println(playerOneName + " wins: " + playerOneWins);
         System.out.println(playerTwoName + " wins: " + playerTwoWins);
@@ -106,9 +118,9 @@ public class HumanInterfaceDevice {
         }
     }
 
-    public void displayChoices(String who, Choice choice){
+    private void displayChoices(String who, Choice choice) {
 
-        switch (choice){
+        switch (choice) {
             case ROCK:
                 System.out.println("-->" + who + " selected rock!");
                 displayRock();
@@ -122,7 +134,14 @@ public class HumanInterfaceDevice {
                 displayScissors();
                 break;
         }
+    }
 
+    public void displayPlayerOneChoice(Choice choice) {
+        displayChoices(playerOneName, choice);
+    }
+
+    public void displayPlayerTwoChoice(Choice choice) {
+        displayChoices(playerTwoName, choice);
     }
 
     private void displayRock() {

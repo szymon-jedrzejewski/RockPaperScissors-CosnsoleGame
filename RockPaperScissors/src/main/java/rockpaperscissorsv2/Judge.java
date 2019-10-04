@@ -1,17 +1,14 @@
 package rockpaperscissorsv2;
 
 import static rockpaperscissorsv2.Choice.*;
-import static rockpaperscissorsv2.HumanInterfaceDevice.*;
 import static rockpaperscissorsv2.Result.*;
 
 public class Judge {
     private HumanInterfaceDevice humanInterfaceDevice = new HumanInterfaceDevice();
-    //private Player playerOne = new HumanPlayer(humInDe);
     private Computer computer = new Computer();
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
-    private String playerOneName;
-    private String playerTwoName = "Computer";
+
 
 
     private Result compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
@@ -37,10 +34,10 @@ public class Judge {
     public void winnerOfTheRound() {
 
         Choice playerOneChoice = humanInterfaceDevice.getPlayerCorrectChoice();
-        humanInterfaceDevice.displayChoices(playerOneName, playerOneChoice);
+        humanInterfaceDevice.displayPlayerOneChoice(playerOneChoice);
 
         Choice playerTwoChoice = computer.playerChoice();
-        humanInterfaceDevice.displayChoices(playerTwoName, playerTwoChoice);
+        humanInterfaceDevice.displayPlayerTwoChoice(playerTwoChoice);
 
         Result winLoseTie = compareChoices(playerOneChoice, playerTwoChoice);
 
@@ -49,11 +46,11 @@ public class Judge {
                 humanInterfaceDevice.displayTieMessage();
                 break;
             case PLAYER_ONE_WON:
-                humanInterfaceDevice.displayRoundWinner(playerOneName);
+                humanInterfaceDevice.displayPlayerOneWinRoundMessage();
                 playerOneWins++;
                 break;
             case PLAYER_TWO_WON:
-                humanInterfaceDevice.displayRoundWinner(playerTwoName);
+                humanInterfaceDevice.displayPlayerTwoWinRoundMessage();
                 playerTwoWins++;
                 break;
         }
@@ -79,7 +76,7 @@ public class Judge {
         while (playerOneWins < gamesNeededToWin && playerTwoWins < gamesNeededToWin) {
             humanInterfaceDevice.displayYourChoiceMessage();
             winnerOfTheRound();
-            humanInterfaceDevice.displayGameStatus(playerOneName, playerOneWins, playerTwoName, playerTwoWins);
+            humanInterfaceDevice.displayGameStatus(playerOneWins, playerTwoWins);
         }
         return playerOneWins > playerTwoWins ? PLAYER_ONE_WON : PLAYER_TWO_WON;
     }
@@ -91,10 +88,10 @@ public class Judge {
 
         switch (getWinnerOfTheGame(numberOfGames)) {
             case PLAYER_ONE_WON:
-                humanInterfaceDevice.displayGameWinner(playerOneName);
+                humanInterfaceDevice.displayPlayerOneWinGameMessage();
                 break;
             case PLAYER_TWO_WON:
-                humanInterfaceDevice.displayGameWinner(playerTwoName);
+                humanInterfaceDevice.displayPlayerTwoWinGameMessage();
                 break;
         }
     }
@@ -102,8 +99,8 @@ public class Judge {
     public void startGame() {
         humanInterfaceDevice.displayWelcomeMessage();
         humanInterfaceDevice.displayEnterPlayerNameMessage();
-        playerOneName = humanInterfaceDevice.enterPlayerName();
-        humanInterfaceDevice.displayHiMessage(playerOneName);
+        humanInterfaceDevice.enterPlayerName();
+        humanInterfaceDevice.displayPlayerOneHiMessage();
         gameLogic();
     }
 }
