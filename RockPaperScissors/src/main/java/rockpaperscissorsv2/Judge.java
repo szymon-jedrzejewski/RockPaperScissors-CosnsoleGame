@@ -1,9 +1,7 @@
 package rockpaperscissorsv2;
 
 import static rockpaperscissorsv2.Choice.*;
-import static rockpaperscissorsv2.RoundResult.PLAYER_ONE_WON;
-import static rockpaperscissorsv2.RoundResult.PLAYER_TWO_WON;
-import static rockpaperscissorsv2.RoundResult.TIE;
+import static rockpaperscissorsv2.Result.*;
 
 public class Judge {
     private HumanInterfaceDevice humanInterfaceDevice = new HumanInterfaceDevice();
@@ -12,9 +10,9 @@ public class Judge {
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
     private String playerOneName;
-    public String playerTwoName = "Computer";
+    private String playerTwoName = "Computer";
 
-    private RoundResult compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
+    private Result compareChoices(Choice playerOneChoice, Choice playerTwoChoice) {
 
         if (playerOneChoice == playerTwoChoice) {
             return TIE;
@@ -42,7 +40,7 @@ public class Judge {
         Choice playerTwoChoice = computer.playerChoice();
         humanInterfaceDevice.displayChoices(playerTwoName, playerTwoChoice);
 
-        RoundResult winLoseTie = compareChoices(playerOneChoice, playerTwoChoice);
+        Result winLoseTie = compareChoices(playerOneChoice, playerTwoChoice);
 
         switch (winLoseTie) {
             case TIE:
@@ -75,27 +73,13 @@ public class Judge {
         return numberOfGames;
     }
 
-    private boolean isPlayerOneAWinnerOfTheGame(int gamesNeededToWin) {
-        boolean didPlayerOneWin = true;
-        boolean playerOneOrPlayerTwoIsNotWinnerOfGame = true;
-
-        while (playerOneOrPlayerTwoIsNotWinnerOfGame) {
+    private Result getWinnerOfTheGame(int gamesNeededToWin) {
+        while (playerOneWins < gamesNeededToWin && playerTwoWins < gamesNeededToWin) {
             humanInterfaceDevice.displayYourChoiceMassage();
             winnerOfTheRound();
             humanInterfaceDevice.displayGameStatus(playerOneName, playerOneWins, playerTwoName, playerTwoWins);
-
-            if (playerOneWins == gamesNeededToWin) {
-
-                playerOneOrPlayerTwoIsNotWinnerOfGame = false;
-
-            } else if (playerTwoWins == gamesNeededToWin) {
-
-                didPlayerOneWin = false;
-                playerOneOrPlayerTwoIsNotWinnerOfGame = false;
-
-            }
         }
-        return didPlayerOneWin;
+        return playerOneWins > playerTwoWins ? PLAYER_ONE_WON : PLAYER_TWO_WON;
     }
 
     private void gameLogic() {
@@ -103,10 +87,13 @@ public class Judge {
 
         int numberOfGames = (numberOfGames() + 1) / 2;
 
-        if (isPlayerOneAWinnerOfTheGame(numberOfGames)) {
-            humanInterfaceDevice.displayGameWinner(playerOneName);
-        } else {
-            humanInterfaceDevice.displayGameWinner(playerTwoName);
+        switch (getWinnerOfTheGame(numberOfGames)) {
+            case PLAYER_ONE_WON:
+                humanInterfaceDevice.displayGameWinner(playerOneName);
+                break;
+            case PLAYER_TWO_WON:
+                humanInterfaceDevice.displayGameWinner(playerTwoName);
+                break;
         }
     }
 
