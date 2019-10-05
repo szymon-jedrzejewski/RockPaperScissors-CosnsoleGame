@@ -74,7 +74,6 @@ public class Judge {
 
     private Result getWinnerOfTheGame(int gamesNeededToWin) {
         while (playerOneWins < gamesNeededToWin && playerTwoWins < gamesNeededToWin) {
-            humanInterfaceDevice.displayYourChoiceMessage();
             winnerOfTheRound();
             humanInterfaceDevice.displayGameStatus(playerOneWins, playerTwoWins);
         }

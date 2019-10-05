@@ -50,7 +50,8 @@ public class HumanInterfaceDevice {
     private void displayHiMessage(String who) {
         System.out.println("Hi " + who);
     }
-    public void displayPlayerOneHiMessage(){
+
+    public void displayPlayerOneHiMessage() {
         displayHiMessage(playerOneName);
     }
 
@@ -89,19 +90,17 @@ public class HumanInterfaceDevice {
     }
 
     public Choice getPlayerCorrectChoice() {
-        String playerChoice;
-        boolean isNotCorrect = true;
-        while (isNotCorrect) {
+        String playerChoice = "";
+        while (!isPlayerInputCorrect(playerChoice)) {
             playerChoice = enterPlayerChoice();
-            if (playerChoice.equals("rock") || playerChoice.equals("paper") || playerChoice.equals("scissors")) {
-                assignPlayerChoice(playerChoice);
-                isNotCorrect = false;
-            } else {
-                displayIncorrectInputMessage("input!");
-                isNotCorrect = true;
-            }
+            assignPlayerChoice(playerChoice);
         }
         return assignedValue;
+    }
+
+    public boolean isPlayerInputCorrect(String playerChoice) {
+        displayYourChoiceMessage();
+        return (playerChoice.equals("rock") || playerChoice.equals("paper") || playerChoice.equals("scissors"));
     }
 
     private void assignPlayerChoice(String playerChoice) {
