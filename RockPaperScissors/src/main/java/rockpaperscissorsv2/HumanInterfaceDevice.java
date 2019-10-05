@@ -83,10 +83,10 @@ public class HumanInterfaceDevice {
     }
 
     public void displayGameStatus(int playerOneWins, int playerTwoWins) {
-        System.out.println("\n============================");
-        System.out.println(playerOneName + " wins: " + playerOneWins);
-        System.out.println(playerTwoName + " wins: " + playerTwoWins);
-        System.out.println("============================\n");
+        System.out.print("\n============================\n"
+                        + playerOneName + "wins: " + playerOneWins + "\n"
+                        + playerTwoName + "wins: " + playerTwoWins + "\n"
+                        + "\n============================\n");
     }
 
     public boolean isPlayerInputCorrect(String playerChoice) {
