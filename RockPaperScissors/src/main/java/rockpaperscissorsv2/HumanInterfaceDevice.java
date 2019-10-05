@@ -89,32 +89,25 @@ public class HumanInterfaceDevice {
         System.out.println("============================\n");
     }
 
-    public Choice getPlayerCorrectChoice() {
-        String playerChoice = "";
-        while (!isPlayerInputCorrect(playerChoice)) {
-            playerChoice = enterPlayerChoice();
-            assignPlayerChoice(playerChoice);
-        }
-        return assignedValue;
-    }
-
     public boolean isPlayerInputCorrect(String playerChoice) {
         displayYourChoiceMessage();
         return (playerChoice.equals("rock") || playerChoice.equals("paper") || playerChoice.equals("scissors"));
     }
 
-    private void assignPlayerChoice(String playerChoice) {
-        switch (playerChoice) {
-            case "rock":
-                assignedValue = Choice.ROCK;
-                break;
-            case "paper":
-                assignedValue = Choice.PAPER;
-                break;
-            case "scissors":
-                assignedValue = Choice.SCISSORS;
-                break;
+    public Choice getPlayerCorrectChoice() throws Exception {
+        String playerChoice = "";
+        while (!isPlayerInputCorrect(playerChoice)) {
+            playerChoice = enterPlayerChoice();
+            switch (playerChoice) {
+                case "rock":
+                    return Choice.ROCK;
+                case "paper":
+                    return Choice.PAPER;
+                case "scissors":
+                    return Choice.SCISSORS;
+            }
         }
+        throw new Exception();
     }
 
     private void displayChoices(String who, Choice choice) {

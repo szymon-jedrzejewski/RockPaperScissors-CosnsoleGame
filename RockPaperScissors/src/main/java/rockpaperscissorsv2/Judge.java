@@ -31,7 +31,7 @@ public class Judge {
         return TIE;
     }
 
-    public void winnerOfTheRound() {
+    public void winnerOfTheRound() throws Exception {
 
         Choice playerOneChoice = humanInterfaceDevice.getPlayerCorrectChoice();
         humanInterfaceDevice.displayPlayerOneChoice(playerOneChoice);
@@ -72,7 +72,7 @@ public class Judge {
         return numberOfGames;
     }
 
-    private Result getWinnerOfTheGame(int gamesNeededToWin) {
+    private Result getWinnerOfTheGame(int gamesNeededToWin) throws Exception {
         while (playerOneWins < gamesNeededToWin && playerTwoWins < gamesNeededToWin) {
             winnerOfTheRound();
             humanInterfaceDevice.displayGameStatus(playerOneWins, playerTwoWins);
@@ -80,7 +80,7 @@ public class Judge {
         return playerOneWins > playerTwoWins ? PLAYER_ONE_WON : PLAYER_TWO_WON;
     }
 
-    private void gameLogic() {
+    private void gameLogic() throws Exception {
         humanInterfaceDevice.displayNumberOfGamesMessage();
 
         int numberOfGames = (numberOfGames() + 1) / 2;
@@ -95,7 +95,7 @@ public class Judge {
         }
     }
 
-    public void startGame() {
+    public void startGame() throws Exception {
         humanInterfaceDevice.displayWelcomeMessage();
         humanInterfaceDevice.displayEnterPlayerNameMessage();
         humanInterfaceDevice.enterPlayerName();
