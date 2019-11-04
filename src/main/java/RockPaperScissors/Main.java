@@ -1,4 +1,4 @@
-package rockpaperscissorsv2;
+package RockPaperScissors;
 
 public class Main {
     public static void main(String[] args) throws Exception {

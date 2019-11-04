@@ -1,4 +1,4 @@
-package rockpaperscissorsv2;
+package RockPaperScissors;
 
 public class Computer {
     public Choice playerChoice() {

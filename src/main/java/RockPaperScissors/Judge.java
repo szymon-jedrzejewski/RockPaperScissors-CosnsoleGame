@@ -1,7 +1,7 @@
-package rockpaperscissorsv2;
+package RockPaperScissors;
 
-import static rockpaperscissorsv2.Choice.*;
-import static rockpaperscissorsv2.Result.*;
+import static RockPaperScissors.Choice.*;
+import static RockPaperScissors.Result.*;
 
 public class Judge {
     private HumanInterfaceDevice humanInterfaceDevice = new HumanInterfaceDevice();

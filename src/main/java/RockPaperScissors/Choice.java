@@ -1,4 +1,4 @@
-package rockpaperscissorsv2;
+package RockPaperScissors;
 
 public enum Choice {
     ROCK, PAPER, SCISSORS
