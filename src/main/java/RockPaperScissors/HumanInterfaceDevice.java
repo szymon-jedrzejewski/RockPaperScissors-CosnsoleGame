@@ -1,5 +1,6 @@
 package RockPaperScissors;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class HumanInterfaceDevice {
@@ -7,17 +8,42 @@ public class HumanInterfaceDevice {
     private Choice assignedValue;
     private String playerOneName;
     private String playerTwoName = "Computer";
+    private static final String ROCK = "rock";
+    private static final String PAPER = "paper";
+    private static final String SCISSORS = "scissors";
 
     private String enterPlayerChoice() {
-        return in.next().toLowerCase();
+        while (true) {
+            try {
+                return in.next().toLowerCase();
+            } catch (Exception e) {
+                in.next();
+                System.out.println("Something went wrong!");
+            }
+        }
     }
 
     public int getNumbersOfGame() {
-        return in.nextInt();
+        while (true) {
+            try {
+                return in.nextInt();
+            } catch (InputMismatchException e) {
+                in.next();
+                System.out.print("You didn't enter number buddy!\n"
+                        + "Try again:");
+            }
+        }
     }
 
     public String enterPlayerName() {
-        return playerOneName = in.next();
+        while (true) {
+            try {
+                return in.next();
+            } catch (Exception e) {
+                in.next();
+                System.out.println("Ups, something went wrong!");
+            }
+        }
     }
 
     public void displayNumberOfGamesMessage() {
@@ -51,7 +77,7 @@ public class HumanInterfaceDevice {
         System.out.println("Hi " + who);
     }
 
-    public void displayPlayerOneHiMessage() {
+    public void displayPlayerOneHiMessage(String playerOneName) {
         displayHiMessage(playerOneName);
     }
 
@@ -62,7 +88,7 @@ public class HumanInterfaceDevice {
         System.out.println("The winner of the " + what + " is " + who);
     }
 
-    public void displayPlayerOneWinGameMessage() {
+    public void displayPlayerOneWinGameMessage(String playerOneName) {
         displayWinnerOfTheGameOrRound("game", playerOneName);
     }
 
@@ -70,7 +96,7 @@ public class HumanInterfaceDevice {
         displayWinnerOfTheGameOrRound("game", playerTwoName);
     }
 
-    public void displayPlayerOneWinRoundMessage() {
+    public void displayPlayerOneWinRoundMessage(String playerOneName) {
         displayWinnerOfTheGameOrRound("round", playerOneName);
     }
 
@@ -82,14 +108,14 @@ public class HumanInterfaceDevice {
         System.out.println("It's tie this time.");
     }
 
-    public void displayGameStatus(int playerOneWins, int playerTwoWins) {
+    public void displayGameStatus(int playerOneWins, int playerTwoWins, String playerOneName) {
         System.out.print("\n============================\n"
-                        + playerOneName + "wins: " + playerOneWins + "\n"
-                        + playerTwoName + "wins: " + playerTwoWins + "\n"
-                        + "\n============================\n");
+                + playerOneName + " wins: " + playerOneWins + "\n"
+                + playerTwoName + " wins: " + playerTwoWins + "\n"
+                + "\n============================\n");
     }
 
-    public boolean isPlayerInputCorrect(String playerChoice) {
+    private boolean isPlayerInputCorrect(String playerChoice) {
         displayYourChoiceMessage();
         return (playerChoice.equals("rock") || playerChoice.equals("paper") || playerChoice.equals("scissors"));
     }
@@ -99,11 +125,11 @@ public class HumanInterfaceDevice {
         while (!isPlayerInputCorrect(playerChoice)) {
             playerChoice = enterPlayerChoice();
             switch (playerChoice) {
-                case "rock":
+                case ROCK:
                     return Choice.ROCK;
-                case "paper":
+                case PAPER:
                     return Choice.PAPER;
-                case "scissors":
+                case SCISSORS:
                     return Choice.SCISSORS;
             }
         }
@@ -128,7 +154,7 @@ public class HumanInterfaceDevice {
         }
     }
 
-    public void displayPlayerOneChoice(Choice choice) {
+    public void displayPlayerOneChoice(Choice choice, String playerOneName) {
         displayChoices(playerOneName, choice);
     }
 

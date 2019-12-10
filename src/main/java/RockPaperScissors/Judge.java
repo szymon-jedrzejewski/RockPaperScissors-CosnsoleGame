@@ -6,6 +6,7 @@ import static RockPaperScissors.Result.*;
 public class Judge {
     private HumanInterfaceDevice humanInterfaceDevice = new HumanInterfaceDevice();
     private Computer computer = new Computer();
+    private String playerOneName;
     private int playerOneWins = 0;
     private int playerTwoWins = 0;
 
@@ -34,7 +35,7 @@ public class Judge {
     public void winnerOfTheRound() throws Exception {
 
         Choice playerOneChoice = humanInterfaceDevice.getPlayerCorrectChoice();
-        humanInterfaceDevice.displayPlayerOneChoice(playerOneChoice);
+        humanInterfaceDevice.displayPlayerOneChoice(playerOneChoice, playerOneName);
 
         Choice playerTwoChoice = computer.playerChoice();
         humanInterfaceDevice.displayPlayerTwoChoice(playerTwoChoice);
@@ -46,7 +47,7 @@ public class Judge {
                 humanInterfaceDevice.displayTieMessage();
                 break;
             case PLAYER_ONE_WON:
-                humanInterfaceDevice.displayPlayerOneWinRoundMessage();
+                humanInterfaceDevice.displayPlayerOneWinRoundMessage(playerOneName);
                 playerOneWins++;
                 break;
             case PLAYER_TWO_WON:
@@ -75,7 +76,7 @@ public class Judge {
     private Result getWinnerOfTheGame(int gamesNeededToWin) throws Exception {
         while (playerOneWins < gamesNeededToWin && playerTwoWins < gamesNeededToWin) {
             winnerOfTheRound();
-            humanInterfaceDevice.displayGameStatus(playerOneWins, playerTwoWins);
+            humanInterfaceDevice.displayGameStatus(playerOneWins, playerTwoWins, playerOneName);
         }
         return playerOneWins > playerTwoWins ? PLAYER_ONE_WON : PLAYER_TWO_WON;
     }
@@ -87,7 +88,7 @@ public class Judge {
 
         switch (getWinnerOfTheGame(numberOfGames)) {
             case PLAYER_ONE_WON:
-                humanInterfaceDevice.displayPlayerOneWinGameMessage();
+                humanInterfaceDevice.displayPlayerOneWinGameMessage(playerOneName);
                 break;
             case PLAYER_TWO_WON:
                 humanInterfaceDevice.displayPlayerTwoWinGameMessage();
@@ -98,8 +99,8 @@ public class Judge {
     public void startGame() throws Exception {
         humanInterfaceDevice.displayWelcomeMessage();
         humanInterfaceDevice.displayEnterPlayerNameMessage();
-        humanInterfaceDevice.enterPlayerName();
-        humanInterfaceDevice.displayPlayerOneHiMessage();
+        playerOneName = humanInterfaceDevice.enterPlayerName();
+        humanInterfaceDevice.displayPlayerOneHiMessage(playerOneName);
         gameLogic();
     }
 }
