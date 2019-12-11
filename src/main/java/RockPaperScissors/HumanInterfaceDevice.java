@@ -164,37 +164,37 @@ public class HumanInterfaceDevice {
 
     private void displayRock() {
         //System.out.println("Rock");
-        System.out.println("\n============================");
-        System.out.println("    _______ ");
-        System.out.println("---'   ____) ");
-        System.out.println("      (_____)");
-        System.out.println("      (_____)");
-        System.out.println("      (____) ");
-        System.out.println("---.__(___)");
-        System.out.println("============================\n");
+        System.out.print("\n============================/n"
+                        + "    _______ /n"
+                        + "---'   ____) /n"
+                        + "      (_____)/n"
+                        + "      (_____)/n"
+                        + "      (____) /n"
+                        + "---.__(___)/n"
+                        + "============================\n");
     }
 
     private void displayPaper() {
         //System.out.println("Paper");
-        System.out.println("\n============================");
-        System.out.println("    _______       ");
-        System.out.println("---'   ____)____  ");
-        System.out.println("          ______) ");
-        System.out.println("---'    ________ ) ");
-        System.out.println("        _______) ");
-        System.out.println("---.__________)");
-        System.out.println("============================\n");
+        System.out.println("\n============================"
+                        + "    _______       /n"
+                        + "---'   ____)____  /n"
+                        + "          ______) /n"
+                        + "---'    ________ ) /n"
+                        + "        _______) /n"
+                        + "---.__________)/n"
+                        + "============================\n");
     }
 
     private void displayScissors() {
         //System.out.println("Scissors");
-        System.out.println("\n============================");
-        System.out.println("    _______");
-        System.out.println("---'   ____)____");
-        System.out.println("          ______)");
-        System.out.println("      __________)");
-        System.out.println("      (____)");
-        System.out.println("---.__(___)");
-        System.out.println("============================\n");
+        System.out.println("\n============================"
+                            + "    _______\n"
+                            + "---'   ____)____\n"
+                            + "          ______)\n"
+                            + "      __________)\n"
+                            + "      (____)\n"
+                            + "---.__(___)\n"
+                            + "============================\n");
     }
 }
