@@ -176,7 +176,7 @@ public class HumanInterfaceDevice {
 
     private void displayPaper() {
         //System.out.println("Paper");
-        System.out.println("\n============================"
+        System.out.print("\n============================"
                         + "    _______       /n"
                         + "---'   ____)____  /n"
                         + "          ______) /n"
@@ -188,7 +188,7 @@ public class HumanInterfaceDevice {
 
     private void displayScissors() {
         //System.out.println("Scissors");
-        System.out.println("\n============================"
+        System.out.print("\n============================"
                             + "    _______\n"
                             + "---'   ____)____\n"
                             + "          ______)\n"
